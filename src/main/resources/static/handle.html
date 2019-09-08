@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>处理信息</title>
+    <link rel="stylesheet" type="text/css" href="./layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="./css/admin.css" />
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            padding: 10px;
+        }
+
+        table{
+            margin-left: 40px;
+        }
+
+        table input{
+            display: inline-block;
+            outline: none;
+            width: 97%;
+            height: 2.5rem;
+            border: 0.1rem solid rgba(235, 235, 235, 0.96);
+            padding: 0 0.5rem;
+            box-sizing: border-box;
+        }
+        table td{
+            height: 3rem;
+            border: 0.1rem solid rgba(212, 212, 212, 0.96);
+            text-align: center;
+            width: 21rem;
+        }
+
+        .title-td{
+            width:9rem ;
+            background-color: #ededed;
+        }
+
+         .cus-title {
+		      display: flex;
+		      align-items: center;
+		      height: 40px;
+		      font-size: 16px;
+		      font-weight: 500;
+		      padding-left: 20px;
+		      margin-bottom: 5px;
+		      margin-top: 5px;
+		      border-bottom: 1px solid #00A187;
+		      color: #00A187;
+		  }
+
+    </style>
+</head>
+<body>
+
+<form class="layui-form" >
+<div class="layui-tab layui-tab-card" lay-filter = "lawmaintab">
+<!-- <form class="layui-form" > -->
+
+    <ul class="layui-tab-title" style="display: flex;background-color:#f2f2f2;">
+        <li class="layui-this" style="background-color:#fff;">部门处理</li>
+        <li>跟踪反馈</li>
+        <div style="flex-grow: 3"></div>
+        <div style="padding-right: 30px;display: flex; align-items: center">
+            <a class="layui-btn" lay-submit lay-filter="formDemo" href="javascript:void(0);" id="submitBtn">保存</a>
+            <a class="layui-btn layui-btn-primary" onclick="closeform(1);" href="javascript:void(0);">关闭</a>
+        </div>
+    </ul>
+
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <table class="layui-form layui-form-pane">
+					<tr>
+						<td class="title-td" style="width:109px;">企业名称:</td>
+						<td colspan="3">
+							<input type="text" name="companyName" id="companyName" value="" style="width: 99%;" readonly="readonly"/>
+						</td>
+					</tr>
+            	<tr>
+                    <td class="title-td" style="width:109px;">提出时间:</td>
+                    <td style="width: 48%">
+	                    <input type="text" name="createTime" id="createTime" value="" style="width: 99%;" readonly="readonly"/>
+                    </td>
+                    <td class="title-td" style="width:10%">问题类型:</td>
+                    <td >
+	                    <input type="text" name="questionType" id="questionType" value=""style="width: 99%;" readonly="readonly"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-td" style="width:109px;">处理方式:</td>
+                    <td>
+                        <input type="radio" name="method" value="1" title="解答">
+                        <input type="radio" name="method" value="2" title="转办">
+                        <input type="radio" name="method" value="3" title="其他">
+                    </td>
+                    <td class="title-td" style="width:109px;">办理机构:</td>
+                    <td>
+                        <input type="text" name="department" id="department" value="" style="width: 99%;" readonly="readonly"/>
+                    </td>
+                </tr>
+            	<tr>
+                    <td class="title-td" style="width:109px;">答复内容:</td>
+                    <td colspan="3">
+                        <textarea rows="5" cols="" style="width: 99%;text-indent:8px;" name="replyContent" id="replyContent" lay-verify="required"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-td" style="width:109px;">办结时间:</td>
+                    <td>
+                        <input type="text" name="endAt" id="endAt" value="" style="width: 99%;" lay-verify="required"/>
+                    </td>
+                    <td class="title-td" style="width:109px;">是否超时:</td>
+                    <td>
+                        <input type="radio" name="overTime" value="1" title="未超时">
+                        <input type="radio" name="overTime" value="2" title="超时">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="layui-tab-item" >
+            <table class="layui-form layui-form-pane">
+                <tr>
+                    <td class="title-td" style="width:109px;">办结评价:</td>
+                    <td style="width: 48%">
+                        <select name="evaluate" id="evaluate" lay-verify="">
+                            <option value="">请选择</option>
+                            <option value="1">满意</option>
+                            <option value="2">不满意</option>
+                        </select> 
+                    </td>
+                    <td class="title-td" style="width:10%">原因:</td>
+                    <td >
+                        <input type="text" name="reason" id="reason" value=""style="width: 99%;" lay-verify="required"/>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td class="title-td" style="width:109px;">回访时间:</td>
+                    <td>
+                        <input type="text" name="returnTime" id="returnTime" value="" style="width: 99%;" lay-verify="required"/>
+                    </td>
+
+                    <td class="title-td" style="width:10%">催办次数:</td>
+                    <td >
+                        <input type="text" name="urgeTimes" id="urgeTimes" value=""style="width: 99%;" lay-verify="required"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title-td" style="width:109px;">回访内容:</td>
+                    <td colspan="3">
+                        <textarea rows="5" cols="" style="width: 99%;text-indent:8px;" name="returnContent" id="returnContent" lay-verify="required"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+<!-- </form> -->
+</div>
+</form>
+
+
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script src="./layui/layui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript">
+    var questionTypeEnum = {1:"土地需求",2:"资金需求",3:"政策扶持",4:"人才招工",5:"保障生产要素",6:"安全保障",7:"行政审批",8:"环境保护",9:"安全生产"};
+    var statusEnum = {1:"未处理",2:"已处理"};
+(function ($) {
+	  $.getUrlParam = function (name) {
+	   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	   var r = window.location.search.substr(1).match(reg);
+	   if (r != null) return unescape(r[2]); return null;
+	  }
+})(jQuery);
+	var replyId="";
+	$(function(){
+        replyId=$.getUrlParam("replyId");
+		if(replyId!=null&&replyId!=""){
+			 $.ajax({
+                type: "GET",
+                async: false,
+                 url: "http://localhost:8005/question/api/v1/reply/"+replyId + "/detail",
+                dataType: "json",
+                headers: {Authorization: $.cookie("token")},
+                success: function(data){
+                    $("#companyName").val(data.data.companyName);
+                    $("#contacts").val(data.data.contacts);
+                    $("#mobile").val(data.data.mobile);
+                    $("#createTime").val(data.data.acceptAt);
+                    $("#questionType").val(questionTypeEnum[data.data.questionType]);
+                    $("#status").val(statusEnum[data.data.status]);
+                    $("#department").val(data.data.departmentName);
+                    if (data.data.method != null && data.data.method != '') {
+                        // console.log($(':radio[name="method"]'));
+                        $(':radio[name="method"]').map(function (item) {
+                            // console.log(item, this);
+                            if ($(this).val() == data.data.method) {
+                                $(this).attr('checked', true)
+                            } else {
+                                $(this).attr('checked', false)
+                            }
+                        });
+                    }
+                    if (data.data.replyContent != null && data.data.replyContent != '') {
+                        $("#replyContent").val(data.data.replyContent);
+                    }
+                    if (data.data.endAt != null && data.data.endAt != '') {
+                        $("#endAt").val(data.data.endAt);
+                    }
+                    if (data.data.overTime != null && data.data.overTime != '') {
+                        $(':radio[name="overTime"]').map(function (item) {
+                            if ($(this).val() == data.data.overTime) {
+                                $(this).attr('checked', true)
+                            } else {
+                                $(this).attr('checked', false)
+                            }
+                        });
+                    }
+                    if (data.data.evaluate != null && data.data.evaluate != '') {
+                        console.log($("#evaluate").find("option"));
+                        $("#evaluate").find("option").each(function() {
+                            if ($(this).val() == data.data.evaluate) {
+                                $(this).attr("selected", true);
+                            } else {
+                                $(this).attr("selected", false);
+                            }
+                        })
+                    }
+                    if (data.data.urgeTimes != null && data.data.urgeTimes != '') {
+                        $("#urgeTimes").val(data.data.urgeTimes);
+                    }
+                    if (data.data.returnAt != null && data.data.returnAt != '') {
+                        $("#returnTime").val(data.data.returnAt);
+                    }
+                    if (data.data.returnContent != null && data.data.returnContent != '') {
+                        $("#returnContent").val(data.data.returnContent);
+                    }
+                    if (data.data.reason != null && data.data.reason != '') {
+                        $("#reason").val(data.data.reason);
+                    }
+			        }
+			    });
+		}else{
+			 $("#operation").attr("name","operation");
+		}
+	});
+
+
+    layui.use(['layer', 'jquery', 'carousel', 'form', 'laydate', 'table','element'], function() {
+        var layer = layui.layer;
+        var $ = layui.jquery;
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var table = layui.table;
+        var element = layui.element;
+
+        form.on('submit(formDemo)', function(data){
+
+            var params = {
+                "method": data.field.method,
+                "replyContent": data.field.replyContent,
+                "endAt": data.field.endAt,
+                "overTime": data.field.overTime,
+                "urgeTimes": data.field.urgeTimes,
+                "evaluate": data.field.evaluate,
+                "reason": data.field.reason,
+                "returnContent": data.field.returnContent,
+                "returnAt": data.field.returnTime
+            };
+
+            if (params["method"] == null || params["method"] == "") {
+                layer.msg("处理方式不能为空");
+                return;
+            }
+
+            if (params["overTime"] == null || params["overTime"] == "") {
+                layer.msg("请选择是否超时");
+                return;
+            }
+
+            if (params["evaluate"] == null || params["evaluate"] == "") {
+                layer.msg("请选择办结评价");
+                return;
+            }
+
+            $.ajax('http://localhost:8005/question/api/v1/reply/' + replyId + '/handle', {
+                data: JSON.stringify(params),
+                dataType: 'json',//服务器返回json格式数据
+                type: 'PUT',//HTTP请求类型
+                timeout: 10000,//超时时间设置为10秒；
+                headers: {'Content-Type': 'application/json', Authorization: $.cookie("token")},
+                success: function (data) {
+                    layer.msg("保存成功");
+                    setTimeout(function () {
+                        closeform();
+                    },1000)
+                },
+                error: function (xhr, type, errorThrown) {
+                    if (xhr.status == 500) {
+                        layer.msg(xhr.responseJSON.message);
+                    }
+                }
+            });
+
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+       laydate.render({ 
+       		elem: '#endAt',
+           type: 'datetime'
+       });
+
+       laydate.render({ 
+       		elem: '#returnTime',
+           type: 'datetime'
+       });
+		
+       
+       
+    });
+    
+    function closeform(e){
+    	var index=parent.layer.getFrameIndex(window.name);//获取当前弹出层的层级
+			parent.layer.close(index);//关闭弹出层
+    }
+    
+</script>
+
+</body>
+</html>

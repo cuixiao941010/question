@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>borrow</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="./layui/css/layui.css" /> -->
+<script src="./layui/layui.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div class="zxcf_nav_wper">
+	<div class="zxcf_nav clearfix px1000">
+		<div class="zxcf_nav_l fl"><img src="images/zxcf_logo.png" alt=""></div>
+	</div>
+</div>
+<div class="bor_banner01">
+	 
+</div>
+<div class="bor_con_wper">
+	  <div class="bor_con px1000">
+	  	    <div class="bor_detail">
+	  	    	   <div class="bor_detail_box">
+						<form class="layui-form">
+	  	    	   	    <div class="bor_det_one clearfix pt30 pb30">
+	  	    	   	    	  <div class="bor_det_onel fl">
+	  	    	   	    	  	       <p class="bor_p1">说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字。</p>
+										<p class="bor_p2">说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字</p>
+										<h3 class="bor_onel_tit"><span>办理机构</span></h3>
+										<div class="mt15"><input type="checkbox" name="department" value="1" />  <label>&nbsp;&nbsp;机构1</label></div>
+										<div class="mt15"><input type="checkbox" name="department" value="2" />  <label>&nbsp;&nbsp;机构2</label></div>
+										<div class="mt15"><input type="checkbox" name="department" value="3" />  <label>&nbsp;&nbsp;机构3</label></div>
+										<div class="mt15"><input type="checkbox" name="department" value="4" />  <label>&nbsp;&nbsp;机构4</label></div>
+										<div class="mt15"><input type="checkbox" name="department" value="5" />  <label>&nbsp;&nbsp;机构5</label></div>
+	  	    	   	    	  </div>  
+	  	    	   	    	  <div class="bor_det_oner fl">
+	  	    	   	    	  	     <!-- <form> -->
+	  	    	   	    	  	     	  <fieldset>
+	  	    	   	    	  	     	  	   <div class="mt15">
+	  	    	   	    	  	     	  	   	   <label>*企业名称</label>
+	  	    	   	    	  	     	  	   	   <input type="text" id="companyName" >
+	  	    	   	    	  	     	  	   </div>
+	  	    	   	    	  	     	  	   <div class="mt15">
+	  	    	   	    	  	     	  	   	   <label>*联系人</label>
+	  	    	   	    	  	     	  	   	   <input type="text" id="contacts">
+	  	    	   	    	  	     	  	   </div>
+                                               <div class="mt15">
+	  	    	   	    	  	     	  	   	   <label>*联系电话</label>
+	  	    	   	    	  	     	  	   	   <input type="text" id="mobile">
+	  	    	   	    	  	     	  	   </div>
+	  	    	   	    	  	     	  	   <div class="mt15">
+	  	    	   	    	  	     	  	   	   <label>*问题类型</label>
+	  	    	   	    	  	     	  	   	   <select id="questionType">
+													<option value ="">请选择</option select>
+													<option value ="1">土地需求</option>
+													<option value ="2">资金需求</option>
+													<option value="3">政策扶持</option>
+													<option value="4">人才招工</option>
+													<option value ="5">保障生产要素</option>
+													<option value ="6">安全保障</option>
+													<option value="7">行政审批</option>
+													<option value="8">环境保护</option>
+													<option value="9">安全生产</option>
+												  </select>
+	  	    	   	    	  	     	  	   </div>
+	  	    	   	    	  	     	  	    <div class="mt15">
+	  	    	   	    	  	     	  	   	   <label>*问题内容</label> 
+	  	    	   	    	  	     	  	   	   <textarea id="questionContent"></textarea>
+	  	    	   	    	  	     	  	   	 
+	  	    	   	    	  	     	  	   </div>
+	  	    	   	    	  	     	  	   <div class="mt15" >
+	  	    	   	    	  	     	  	   	   <label>*验证码</label>
+	  	    	   	    	  	     	  	   	   <input type="text" class="yanzheng" >
+	  	    	   	    	  	     	  	   	   
+	  	    	   	    	  	     	  	   </div>
+	  	    	   	    	  	     	  	   <div class="mt30">
+	  	    	   	    	  	     	  	   	   <label></label>
+																<a class="bor_btn" onclick="saveOrder()">提交</a>
+																<!-- <button class="layui-btn" lay-submit lay-filter="*">立即提交</button> -->
+	  	    	   	    	  	     	  	   </div>
+												  </fieldset>
+												  
+	  	    	   	    	  	     <!-- </form> -->
+	  	    	   	    	  </div>
+							 </div>
+							 </form>
+	  	    	   </div>
+	  	    </div>
+	  </div>
+</div>
+</body>
+<script>
+	function saveOrder() {
+		var departmentIds = selectGg();
+		var params = {
+            "companyName": $("#companyName").val(),
+			"contacts": $("#contacts").val(),
+			"mobile": $("#mobile").val(),
+			"questionContent": $("#questionContent").val(),
+			"departmentIds": departmentIds,
+			"questionType": $("#questionType").val()
+        };
+        if (params["companyName"] == null || params["companyName"] == "") {
+            alert("请填写公司名称");
+            return;
+        }
+        if (params["contacts"] == null || params["contacts"] == "") {
+            alert("请填写联系人");
+            return;
+        }
+        if (params["mobile"] == null || params["mobile"] == "") {
+            alert("请填写联系方式");
+            return;
+        }
+        if (params["questionContent"] == null || params["questionContent"] == "") {
+            alert("请填写问题内容");
+            return;
+        }
+        if (params["questionType"] == null || params["questionType"] == "") {
+            alert("请选择问题类型");
+            return;
+        }
+        if (params["departmentIds"] == null || params["departmentIds"].length == 0) {
+            alert("请选择部门");
+            return;
+        }
+		$.ajax('http://localhost:8005/question/api/v1/order/save', {
+            data: JSON.stringify(params),
+            dataType: 'json',//服务器返回json格式数据
+            type: 'POST',//HTTP请求类型
+            timeout: 10000,//超时时间设置为10秒；
+            headers: {'Content-Type': 'application/json'},
+            success: function (data) {
+                alert("提交成功");
+            },
+            error: function (xhr, type, errorThrown) {
+                if (xhr.status == 500) {
+                    alert(xhr.responseJSON.message);
+                }
+            }
+
+        });
+	}
+
+	function selectGg() {
+		obj = document.getElementsByName("department");
+		check_val = [];
+		for(k in obj) {
+			if(obj[k].checked)
+			check_val.push(obj[k].value);
+		}
+		return check_val;
+	}
+</script>
+</html>

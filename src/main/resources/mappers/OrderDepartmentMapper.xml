@@ -1,0 +1,14 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cx.question.order.repository.OrderDepartmentMapper">
+
+    <select id="getOrderIds" resultType="java.lang.Long">
+        SELECT order_id
+        FROM t_order_department
+        WHERE department_id = #{departmentId}
+
+    </select>
+
+</mapper>
