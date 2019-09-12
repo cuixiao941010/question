@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+	<title>首页</title>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<!-- <link rel="stylesheet/less" type="text/css" href="css/style.less" /> -->
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<!--[if IE 6]>
+<script type="text/javascript">
+   EvPNG.fix('div, ul, img, li, input,span, p');
+</script>
+<![endif]-->
+</head>
+<body>
+<!-- header start -->
+<!-- end top -->
+<div class="zxcf_nav_wper">
+	<div class="zxcf_nav clearfix px1000">
+		 <div class="zxcf_nav_l fl"><img src="images/zxcf_logo.png" alt=""></div>
+		 <div class="zxcf_nav_r fr">
+		 	<img src="images/zxcf_perinfo.png" alt="">
+		 	<span id="currentUser">null</span>
+		 </div>
+	</div>
+</div>
+<div class="zxcf_menu_wper">
+	<div class="zxcf_menu px1000">
+		  <a id="shouye" href="index.html">首页</a>
+		  <a id="xinxi" href="orderList.html">信息列表</a>
+		  <!-- <a href="">我要借款</a>
+		  <a href="">实时财务</a>
+		  <a href="">新手指引</a> -->
+		  <a href="" style="margin-right:0;">关于我们</a>
+	</div>
+</div>
+<!-- end  -->
+<!-- footer end -->
+</body>
+<script>
+    $(function(){
+        var type=$("#type").val();
+        $("#currentUser").html($.cookie("name"));
+        if (type == 1) {
+			$("#shouye").css("backgroundColor","#5d5b5f");
+		}
+        if (type == 2) {
+            $("#xinxi").css("backgroundColor","#5d5b5f");
+        }
+    });
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+</script>
+</html>
