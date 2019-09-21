@@ -186,7 +186,7 @@
 			 $.ajax({
                 type: "GET",
                 async: false,
-                 url: "http://localhost:8005/question/api/v1/reply/"+replyId + "/detail",
+                 url: "http://test.shangweiec.com/question/api/v1/reply/"+replyId + "/detail",
                 dataType: "json",
                 headers: {Authorization: $.cookie("token")},
                 success: function(data){
@@ -290,7 +290,7 @@
                 return;
             }
 
-            $.ajax('http://localhost:8005/question/api/v1/reply/' + replyId + '/handle', {
+            $.ajax('http://test.shangweiec.com/question/api/v1/reply/' + replyId + '/handle', {
                 data: JSON.stringify(params),
                 dataType: 'json',//服务器返回json格式数据
                 type: 'PUT',//HTTP请求类型

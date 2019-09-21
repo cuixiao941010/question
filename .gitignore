@@ -102,6 +102,7 @@ fabric.properties
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 .DS_Store
 .idea
+target
 *.iml
 # modules.xml
 # .idea/misc.xml
